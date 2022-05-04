@@ -14,9 +14,9 @@ double[] CreateArray(int length)
 double[] FillArrayA(double[] array)
 {
     int len = array.Length;
-    for (int i = 1; i < len+1; i++)
+    for (int i = 1; i < len + 1; i++)
     {
-        array[i-1] = i;
+        array[i - 1] = i;
     }
     return array;
 }
@@ -44,7 +44,7 @@ double SumArray(double[] array)
 
 double CalcSumFormula(int n)
 {
-    return ( ((n+1)*n)/2 );
+    return (((n + 1) * n) / 2);
 }
 
 string PrintArrayToString(double[] array)

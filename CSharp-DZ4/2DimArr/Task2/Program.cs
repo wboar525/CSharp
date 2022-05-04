@@ -17,7 +17,7 @@ double[,] Fill2Array(double[,] array)
     {
         for (int j = 0; j < n; j++)
         {
-            array[i, j] = new Random().NextDouble();
+            array[i, j] = new Random().NextDouble()*999;
         }
     }
     return array;
