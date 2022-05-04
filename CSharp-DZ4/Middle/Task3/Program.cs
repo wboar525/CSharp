@@ -5,13 +5,13 @@
 // Вывести массив
 // Вывести сумму
 
-int[] CreateArray(int length)
+double[] CreateArray(int length)
 {
-    int[] array = new int[length];
+    double[] array = new double[length];
     return array;
 }
 
-int[] FillArrayA(int[] array)
+double[] FillArrayA(double[] array)
 {
     int len = array.Length;
     for (int i = 1; i < len+1; i++)
@@ -21,10 +21,10 @@ int[] FillArrayA(int[] array)
     return array;
 }
 
-int SumArray(int[] array)
+double SumArray(double[] array)
 {
     int len = array.Length;
-    int sum = 0;
+    double sum = 0;
     for (int i = 0; i < len; i++)
     {
         sum = sum + array[i];
@@ -32,25 +32,31 @@ int SumArray(int[] array)
     return sum;
 }
 
-/*void PrintArrayConsole(int[] array)
+/*void PrintArrayConsole(double[] array)
 {
-    int len = array.Length;
-    for (int i = 0; i < len; i++)
+    double len = array.Length;
+    for (double i = 0; i < len; i++)
     {
        Console.Write($"{array[i]} "); 
     }
     Console.WriteLine();
 } */
 
-string PrintArrayToString(int[] array)
+double CalcSumFormula(int n)
+{
+    return ( ((n+1)*n)/2 );
+}
+
+string PrintArrayToString(double[] array)
 {
     return String.Join(',', array);
 }
 
-int a = 8;
-int[] array = CreateArray(a);
+int a = 25;
+double[] array = CreateArray(a);
 FillArrayA(array);
-int sum = SumArray(array);
+//double sum = SumArray(array);
+double sum = CalcSumFormula(a);
 Console.WriteLine(PrintArrayToString(array));
 //PrintArrayConsole(array);
 Console.WriteLine(sum);
