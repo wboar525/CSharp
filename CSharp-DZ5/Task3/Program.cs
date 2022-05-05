@@ -14,7 +14,7 @@ double[] CreateAndFillArray(int n)
     return array;
 }
 
-double CalcMaxMinAndDiffArray(double[] array)
+double CalcMaxMinDiff(double[] array)
 {
     int length = array.Length;
     double min = array[0];
@@ -34,6 +34,6 @@ string PrintArrayToString(double[] array)
 
 int a = 6;
 double[] array =  CreateAndFillArray(a);
-double sum = CalcMaxMinAndDiffArray(array);
+double diff = CalcMaxMinDiff(array);
 System.Console.WriteLine(PrintArrayToString(array));
-System.Console.WriteLine(sum);
+System.Console.WriteLine(diff);
