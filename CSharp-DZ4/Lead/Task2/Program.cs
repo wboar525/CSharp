@@ -13,20 +13,19 @@ string PrintListToString(List<int> list) //Вывод списка в строк
 List<int> CatchKeyboardInput() // ловим ввод с клавиатуры ЦЕЛЫХ чисел, немножко обрабатываем исключения чтобы исключить неправильный ввод данных, выход по вводу q
 {
     List<int> list = new List<int> { };
-    System.Console.WriteLine("Введите целое число или нажмите q для выхода: ");
-    string str = System.Console.ReadLine();
+    string str = String.Empty;
     while (str != "q")
     {
         try
         {
+            System.Console.WriteLine("Введите целое число или нажмите q для выхода: ");
+            str = System.Console.ReadLine();
             list.Add(Convert.ToInt32(str));
         }
         catch (FormatException)
         {
-            System.Console.WriteLine("Это не целое число, попробуйте снова!");
+            if (str != "q") System.Console.WriteLine("Это не целое число, попробуйте снова!");
         }
-        System.Console.WriteLine("Введите следующее целое число или нажмите q для завершения ввода: ");
-        str = System.Console.ReadLine();
     }
     return (list);
 }
