@@ -29,7 +29,7 @@ void Print2ArrayConsole(int[,] array) // выведем двумерный ма�
     System.Console.WriteLine();
 }
 
-SortedDictionary<int, int> GenFreqVocab(int[,] array) // для генерации сразу будем использовать класс SortedDictionary, чтобы было сразу как в примере
+SortedDictionary<int, int> GenFreqVocab(int[,] array) // для генерации сразу будем использовать класс SortedDictionary, чтобы было как в примере
 {
     int m = array.GetUpperBound(0) + 1;
     int n = array.GetUpperBound(1) + 1;
@@ -38,13 +38,13 @@ SortedDictionary<int, int> GenFreqVocab(int[,] array) // для генераци
     {
         for (int j = 0; j < n; j++)
         {
-            if (!vocab.ContainsKey(array[i, j]))
+            if (!vocab.ContainsKey(array[i, j])) // если записи с таким ключом нет - добавляем
             {
                 vocab.Add(array[i, j], 1);
             }
             else
             {
-                vocab[array[i, j]]++;
+                vocab[array[i, j]]++; // если есть - увеличиваем значения ключа на 1
             }
         }
     }
@@ -53,7 +53,7 @@ SortedDictionary<int, int> GenFreqVocab(int[,] array) // для генераци
 
 void PrintDictionary(SortedDictionary<int, int> vocab)
 {
-    foreach (var entry in vocab) // определение переменной без типа, компилятор сам выводит тип переменной из выражения справа (ключи словаря)
+    foreach (var entry in vocab) // определение переменной без типа, компилятор сам выводит тип переменной из выражения справа (записи словаря)
     {
         Console.WriteLine("Цифра " + entry.Key + " встречается " + entry.Value + " раз(a)");
     }
