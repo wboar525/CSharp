@@ -23,7 +23,7 @@ int[,] Fill2Array(int[,] array)
 
 MinRC FindMinRowColumn(int[,] array)
 {
-    int min = array[0, 0];
+    int min = array[0,0];
     int row = 0, column = 0;
     int height = array.GetLength(0);
     int width = array.GetLength(1);
@@ -91,6 +91,8 @@ int n = 4; // количество столбцов
 int[,] array = Create2Array(m, n);
 array = Fill2Array(array);
 Print2ArrayConsole(array);
+int[,] a = new int[1,0];
+Print2ArrayConsole(a);
 
 MinRC mrc = FindMinRowColumn(array);
 int min = mrc.min;
@@ -98,8 +100,15 @@ do
 {
     mrc.Print();
     array = DeleteArrayRowColumn(array, mrc);
+    int height = array.GetLength(0); 
+    int width = array.GetLength(1);
     System.Console.WriteLine("Новый массив: ");
     Print2ArrayConsole(array);
+    if (height == 0 || width == 0)
+    {
+        System.Console.WriteLine($"Останов: 2-х мерный массив с размерностью {height} строк и {width} столбцов");
+        break;
+    }
     mrc = FindMinRowColumn(array);
 } while(mrc.min == min);
 
