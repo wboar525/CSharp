@@ -15,7 +15,7 @@ int[,] Fill2Array(int[,] array)
     {
         for (int j = 0; j < n; j++)
         {
-            array[i, j] = new Random().Next(0, 3);
+            array[i, j] = new Random().Next(0, 10);
         }
     }
     return array;
@@ -54,10 +54,6 @@ int[,] DeleteArrayRowColumn(int[,] array, MinRC mrc) // рекурсивно у�
     int l = 0;
 
     int[,] new_array = new int[height - 1, width - 1];
-    if (new_array.GetLength(0) == 0 || new_array.GetLength(1) == 0) // проверяем, не дошли ли мы до массива с нулевым кол-вом строк или столбцов
-    {
-        return(new int[0,0] );
-    }
 
     for (int i = 0; i < height - 1; i++)
     {
@@ -72,15 +68,6 @@ int[,] DeleteArrayRowColumn(int[,] array, MinRC mrc) // рекурсивно у�
         k++;
     }
 
-    MinRC mrc2 = new MinRC();
-    mrc2 = FindMinRowColumn(new_array);
-
-    if (mrc2.min == mrc.min)
-    {
-        int[,] new_array2 = DeleteArrayRowColumn(new_array, mrc2);
-        return new_array2;
-    }
-
     return new_array;
 }
 
@@ -88,11 +75,6 @@ void Print2ArrayConsole(int[,] array)
 {
     int m = array.GetLength(0);
     int n = array.GetLength(1);
-    if (m == 0 || n == 0) 
-    {
-        System.Console.WriteLine($"Результат - массив {m},{n}");
-        return;
-    }
     for (int i = 0; i < m; i++)
     {
         for (int j = 0; j < n; j++)
@@ -104,20 +86,24 @@ void Print2ArrayConsole(int[,] array)
 }
 
 
-int m = 6; // количество строк
+int m = 3; // количество строк
 int n = 4; // количество столбцов
 int[,] array = Create2Array(m, n);
 array = Fill2Array(array);
 Print2ArrayConsole(array);
-System.Console.WriteLine();
 
 MinRC mrc = FindMinRowColumn(array);
-int[,] new_array = DeleteArrayRowColumn(array, mrc);
+int min = mrc.min;
+do
+{
+    mrc.Print();
+    array = DeleteArrayRowColumn(array, mrc);
+    System.Console.WriteLine("Новый массив: ");
+    Print2ArrayConsole(array);
+    mrc = FindMinRowColumn(array);
+} while(mrc.min == min);
 
-Print2ArrayConsole(new_array);
-
-
-class MinRC // поработаем с классами - данный класс содержит в себе значения минимума, его номер строки и столбца
+class MinRC // поработаем с классами - данный класс содержит в себе значения минимума, его номер строки и столбца, а также функция печати текущих значений
 {
     public int min = 0;
     public int row = 0;
@@ -125,6 +111,6 @@ class MinRC // поработаем с классами - данный клас�
 
     public void Print()
     {
-        System.Console.WriteLine($"Минимум {min} найден в строке {row} и столбце {column}");
+        System.Console.WriteLine($"Найден минимум массива равный {min} в строке {row+1}, столбце {column+1} ");
     }
 }
